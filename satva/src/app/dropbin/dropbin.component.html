@@ -1,0 +1,28 @@
+<div class="flex-container" style="background-color:rgb(69, 153, 35);height:80px;">
+    
+    <img class="sbimage" src="../../assets/sell_paper_login.png"  alt="sell">
+
+
+  <h1 class="display-1 loginheading"> <strong> Recycle </strong> paper for <strong> credits </strong> </h1>
+
+</div>
+<div class="row"> 
+  
+        <div class="row">
+            <div class="col-sm-2 offset-md-3">
+                <h1 class="dropbin-heading"> Dear <strong>Scott,</strong>, </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5 offset-md-4">
+                <h2> Please drop papers in the box below.</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 offset-md-6">
+                <a *ngIf="status=='true'" [routerLink]="['/dropbinprocess',status]"><img src="../../assets/dropbin.png" width="180px" height="250px" alt="dropbin"></a>
+                <a *ngIf="status=='false'" [routerLink]="['/dropbinprocess',status,papers]"><img src="../../assets/dropbin.png" width="180px" height="250px" alt="dropbin"></a>
+            </div>
+        </div>
+    
+</div>

@@ -1,0 +1,194 @@
+<div *ngIf="userType==='customer'" class="flex-container" style="background-color:rgb(69, 153, 35);height:80px;">
+    
+  <img class="sbimage" src="../../assets/sell_paper_login.png"  alt="sell">
+
+
+<h1 class="display-1 loginheading"> <strong> Recycle </strong> paper for <strong> credits </strong> </h1>
+
+</div>
+<!-- <div class="row">
+  <h2  style="margin-top:70px;color: rgb(69, 153, 35);"><strong>Customer Login</strong></h2>
+</div> -->
+
+<!-- <div class="row">
+    <div class="col-sm-3 offset-sm-2">
+        <img class="sbimage" src="../../assets/sell_paper_login.png"  alt="sell">
+    </div>
+    <div class="col-sm-3 offset-sm-1">
+        <h1 class="loginheading"> <strong> Recycle </strong> paper for <strong> credits </strong> </h1>
+    </div>    
+</div> -->
+<div class="row" *ngIf="userType==='customer'">    
+    <div class="col-sm-4 col-md-4 offset-md-4">
+      <h2 class="text-center"  style="margin-top:70px;color: rgb(69, 153, 35);"><strong>Customer Login</strong></h2>
+                  
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <div class="row mb-3">
+              <label for="custid" class="col-sm-3 col-form-label">CustomerID<span class="mandate">*</span>:</label>
+              <div class="col-sm-9">
+                <input type="number" #custId="ngModel" name="customerid" class="form-control" id="custid" placeholder="Enter your customer id" ngModel required>
+              </div>
+              <span *ngIf ="custId.touched&&custId.invalid" style="margin-top: 2px;" class="text-center text-danger">Customer id is mandatory</span>
+            </div>
+            <div class="row mb-3">
+              <label for="inputPassword" class="col-sm-3 col-form-label">Password<span class="mandate">*</span> :</label>
+              <div class="col-sm-9">
+                <input type="password" #custpassword="ngModel" class="form-control" placeholder="Enter your password" id="inputPassword" required name="customerpassword" ngModel>
+              </div>
+              <span *ngIf ="custpassword.touched && custpassword.invalid" class="text-center text-danger errorspan">Customer password is mandatory</span>
+            </div>    
+            
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-success" type="submit" [disabled]="!loginForm.valid" style="background-color:rgb(69, 153, 35)">Login</button>
+                <div id="passwordHelpBlock" class="form-text">
+                    New user? <a [routerLink]="['/register','customer']">Register now</a> 
+                  </div>
+              </div>
+
+              <div *ngIf="loginError!=null">
+                <span class="text-danger" style="margin-left: 100px;">{{loginError}}</span>
+              </div>
+            
+          </form>
+    </div>
+</div>
+
+
+<!-- <div *ngIf="userType==='consumer'" class="row" style="background-color:rgb(34, 86, 180);height:80px;">
+  <div class="col-sm-3 offset-sm-1 col-md-4 offset-md-3">
+    <img class="sbimage" src="../../assets/Buy _Paper_image.png"  alt="sell">
+</div>
+<div class="col-sm-3 col-md-4">
+  <h1 class="display-1 loginheading"> <strong> Recycle </strong> paper for <strong> credits </strong> </h1>
+</div>
+</div> -->
+  <!-- <div class="row">
+      <div class="col-sm-3 offset-sm-2">
+          <img class="sbimage" src="../../assets/Buy _Paper_image.png"  alt="sell">
+      </div>
+      <div class="col-sm-3 offset-sm-1">
+          <h1 class="loginheading"><strong>Buy</strong>  and <strong> Recycle </strong> paper  </h1>
+      </div>    
+  </div> -->
+  <div class="row" *ngIf="userType==='consumer'">
+      <div>            
+            <!-- <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="loginform">
+              <div class="row mb-3">
+                <label for="conId" class="col-sm-3 col-form-label">ConsumerID<span class="mandate">*</span>:</label>
+                <div class="col-sm-9">
+                  <input type="text" #conId="ngModel" name="consId" class="form-control" id="conId" placeholder="Enter your customer id" ngModel required>
+                </div>
+                <span *ngIf ="conId.touched&&conId.invalid" style="margin-top: 2px;" class="text-center text-danger">Consumer id is mandatory</span>
+              </div>
+              <div class="row mb-3">
+                <label for="conpwd" class="col-sm-3 col-form-label">Password<span class="mandate">*</span>:</label>
+                <div class="col-sm-9">
+                  <input type="password" name="consumerpwd" #conPassword="ngModel" class="form-control" placeholder="Enter your password" id="conpwd" ngModel required>
+                </div>
+                <span *ngIf ="conPassword.touched&&conPassword.invalid" style="margin-top: 2px;" class="text-center text-danger">password is mandatory</span>
+              </div>    
+              
+              <div class="d-grid gap-2 col-6 mx-auto">
+                  <button class="btn btn-success" type="submit" [disabled]="!loginForm.valid" style="background-color:rgb(34, 86, 180)">Login</button>
+                  <div id="passwordHelpBlock" class="form-text">
+                      New user? <a [routerLink]="['/register','consumer']">Register now</a> 
+                    </div>
+                </div>
+  
+              
+              
+            </form> -->
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="../../assets/Satva-BuyPaper/Slide1.JPG" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="../../assets/Satva-BuyPaper/Slide2.JPG" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="../../assets/Satva-BuyPaper/Slide3.JPG" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="../../assets/Satva-BuyPaper/Slide4.JPG" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="../../assets/Satva-BuyPaper/Slide5.JPG" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="../../assets/Satva-BuyPaper/Slide6.JPG" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="../../assets/Satva-BuyPaper/Slide7.JPG" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="../../assets/Satva-BuyPaper/Slide8.JPG" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="../../assets/Satva-BuyPaper/Slide9.JPG" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="../../assets/Satva-BuyPaper/Slide10.JPG" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="../../assets/Satva-BuyPaper/Slide11.JPG" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="../../assets/Satva-BuyPaper/Slide12.JPG" class="d-block w-100" alt="...">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+  </div>
+ 
+
+  <div *ngIf="userType==='dropbox'" class="flex-container" style="background-color:rgb(69, 153, 35);height:80px;">
+    
+    <img class="sbimage" src="../../assets/sell_paper_login.png"  alt="sell">
+  
+  
+  <h1 class="display-1 loginheading"> <strong> Recycle </strong> paper for <strong> credits </strong> </h1>
+  
+  </div>
+  <div class="row" *ngIf="userType==='dropbox'">    
+    <div class="col-sm-4 col-md-4 offset-md-4">
+      <h2 class="text-center"  style="margin-top:70px;color: rgb(69, 153, 35);"><strong>Customer Login</strong></h2>           
+              <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="loginform">
+                <div class="row mb-3">
+                  <label for="custid" class="col-sm-3 col-form-label">CustomerID<span class="mandate">*</span>:</label>
+                  <div class="col-sm-9">
+                    <input type="number" #custId="ngModel" name="customerid" class="form-control" id="custid" placeholder="Enter your customer id" ngModel required>
+                  </div>
+                  <span *ngIf ="custId.touched&&custId.invalid" style="margin-top: 2px;" class="text-center text-danger">Customer id is mandatory</span>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Password<span class="mandate">*</span> :</label>
+                  <div class="col-sm-9">
+                    <input type="password" #custpassword="ngModel" class="form-control" placeholder="Enter your password" id="inputPassword" required name="customerpassword" ngModel>
+                  </div>
+                  <span *ngIf ="custpassword.touched && custpassword.invalid" class="text-center text-danger errorspan">Customer password is mandatory</span>
+                </div>    
+                
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-success" type="submit" [disabled]="!loginForm.valid" style="background-color:rgb(69, 153, 35)">Login</button>
+                    
+                    <div class="form-text">
+                        New user? <a [routerLink]="['/register','customer']">Register now</a> 
+                      </div>
+                  </div>              
+              </form>
+              <div *ngIf="loginError!=null">
+                <span class="text-danger">{{loginError}}</span>
+              </div>
+        </div>
+       
+    </div>
+    

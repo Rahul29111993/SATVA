@@ -1,0 +1,39 @@
+
+<div class="row" style="background-color:rgb(69, 153, 35);height:15%;"></div>
+<div class="row">
+    <div class="col-md-3 offset-md-2">
+        <img class="sbimage" src="../../assets/Buy_paper_login.png"  alt="Buy">
+    </div>
+    <div class="col-md-3 offset-md-1">
+        <h1 class="loginheading"> <strong> Buy </strong> and <strong> Recycle Paper </strong> </h1>
+    </div>
+    
+</div>
+<div class="row">
+    <div class="col-md-4 offset-md-4">            
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="loginform">
+            <div class="row mb-3">
+              <label for="inputConsumerId" class="col-sm-3 col-form-label">Consumer ID:</label>
+              <div class="col-sm-9">
+                <input type="text" #emailreference="ngModel" name="email" class="form-control" id="inputConsumerId" placeholder="Enter your consumer id" [(ngModel)]="email" required>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="inputPassword" class="col-sm-3 col-form-label">Password:</label>
+              <div class="col-sm-9">
+                <input type="password" class="form-control" placeholder="Enter your password" id="inputPassword">
+              </div>
+            </div>    
+            
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-success" type="submit" [disabled]="!loginForm.valid" style="background-color:rgb(69, 153, 35)">Login</button>
+                <div id="passwordHelpBlock" class="form-text">
+                    New user? <a [routerLink]="['/register','customer']">Register now</a> 
+                  </div>
+              </div>
+
+            
+            
+          </form>
+    </div>
+</div>

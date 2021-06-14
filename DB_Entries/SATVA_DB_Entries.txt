@@ -1,0 +1,248 @@
+use SATVA;
+
+/ * Customer Table entries with Unique and Check Constraints using Indexing in JSON */
+
+db.createCollection("customer", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: [ "CustPassword", "CustAge", "CustGender" ],
+         properties: {
+            CustPassword: {
+               bsonType: "string",
+               description: "must be a string and is required"
+            },
+            CustAge: {
+               bsonType: "int",
+               minimum: 18,
+               maximum: 100,
+               description: "must be an integer in [ 18,100 ] and is required"
+            },
+            CustGender: {
+               enum: [ "M", "F", "O", null ],
+               description: "can only be one of the enum values and is required"
+            }
+         }
+      }
+   }
+})
+
+
+/* Customer Entries for SATVA */
+
+
+db.customer.insert( 
+  {CustId:NumberInt(1001),CustFname:"Rahul", CustLName:"Rajput",CustMailId:"rahul.123@gmail.com",CustPassword:"infy@123",CustAge:NumberInt(25),CustGender:"M",
+CustAddress:"#123, Delhi,100011", Custphone:NumberInt(9988776655),CustRegDate: {date:new Date()}}
+)
+
+/* Create Index for Customer Id */
+
+db.customer.createIndex( {"CustId" : 1}, { unique : true } )
+
+db.customer.insert( 
+  {CustId:NumberInt(1002),CustFname:"Swetha", CustLName:"Santhosh",CustMailId:"swetha.123@gmail.com",CustPassword:"infy@123",CustAge:NumberInt(22),CustGender:"F",
+CustAddress:"#1479, Mysore,570022", Custphone:NumberInt(987654321),CustRegDate: {date:new Date()}}
+)
+
+db.customer.insert( 
+  {CustId:NumberInt(1003),CustFname:"Nandini", CustLName:"G",CustMailId:"Nandini.123@gmail.com",CustPassword:"infy@123",CustAge:NumberInt(21),CustGender:"F",
+CustAddress:"#79, Blore,560001", Custphone:NumberInt(9988776611),CustRegDate: {date:new Date()}}
+)
+
+
+db.customer.insert( 
+  {CustId:NumberInt(1004),CustFname:"Malathi", CustLName:"M",CustMailId:"Malathi.123@gmail.com",CustPassword:"infy@123",CustAge:NumberInt(25),CustGender:"F",
+CustAddress:"#99, Mysore,570004", Custphone:NumberInt(9911776611),CustRegDate: {date:new Date()}}
+)
+
+db.customer.insert( 
+  {CustId:NumberInt(1005),CustFname:"Apoorva", CustLName:"N",CustMailId:"Apporva.123@gmail.com",CustPassword:"infy@123",CustAge:NumberInt(22),CustGender:"F",
+CustAddress:"#143, Delhi,100066", Custphone:NumberInt(8811776611),CustRegDate: {date:new Date()}}
+)
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* Create Consumer Table */
+
+
+db.createCollection("consumer", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: [ "ConsPassword", "ConsAge", "ConsGender" ],
+         properties: {
+            CustPassword: {
+               bsonType: "string",
+               description: "must be a string and is required"
+            },
+            CustAge: {
+               bsonType: "int",
+               minimum: 18,
+               maximum: 100,
+               description: "must be an integer in [ 18,100 ] and is required"
+            },
+            CustGender: {
+               enum: [ "M", "F", "O", null ],
+               description: "can only be one of the enum values and is required"
+            }
+         }
+      }
+   }
+})
+
+
+/* Insert values to Consumer Table */
+
+db.consumer.insert( 
+  {ConsId:NumberInt(5001),CustFname:"Krupa", ConsLName:"Sandesh",ConsMailId:"Krupa.321@gmail.com",ConsPassword:"krupa@321",ConsAge:NumberInt(30),ConsGender:"F",
+ConsGSTIN: "27AAAAA0000A1",ConsFirmName:"Mourya Enterpise",ConsFirmAddress:"#101, Mumbai,400022", ConsPhone:NumberInt(7788223344),ConsRegDate: {date:new Date()}}
+)
+
+
+/* Create Index for Consumer Id */
+
+db.consumer.createIndex( {"ConsId" : 1}, { unique : true } )
+
+
+db.consumer.insert( 
+  {ConsId:NumberInt(5002),CustFname:"Jithendra", ConsLName:"RC",ConsMailId:"Jithu.321@gmail.com",ConsPassword:"jithu@321",ConsAge:NumberInt(40),ConsGender:"M",
+ConsGSTIN: "29AABBA0000A5",ConsFirmName:"Happy Enterpise",ConsFirmAddress:"#3296, Mysore,570018", ConsPhone:NumberInt(6364223344),ConsRegDate: {date:new Date()}}
+)
+
+
+db.consumer.insert( 
+  {ConsId:NumberInt(5003),CustFname:"Harshil", ConsLName:"S",ConsMailId:"harsh.321@gmail.com",ConsPassword:"hars@321",ConsAge:NumberInt(20),ConsGender:"M",
+ConsGSTIN: "29AABBA0000A12",ConsFirmName:"Siri Enterpise",ConsFirmAddress:"#96, Mysore,570022", ConsPhone:NumberInt(6868223344),ConsRegDate: {date:new Date()}}
+)
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/*  Create Paper Table */
+
+db.createCollection("Paper", {
+   validator: {
+      $jsonSchema: {
+         bsonType: "object",
+         required: [ "PaperType" ],
+         properties: {
+              PaperType: {
+               enum: [ "Newspaper", "Magzine", "Used Notebooks","Cardboards","Shredded paper"null ],
+               description: "can only be one of the enum values and is required"
+            }
+         }
+      }
+   }
+})
+
+
+/* Insert data to Paper Table */
+
+
+db.paper.insert( 
+  {PaperId:NumberInt(9001),PaperType:"Newspaper", PaperQuality:NumberInt(1), PricePerUnit: 4.0,PaperQtyAvl:NumberInt(10)}
+)
+
+
+/* Create Index for  Paper Id */
+
+db.paper.createIndex( {"PaperId" : 1}, { unique : true } )
+
+
+db.paper.insert( 
+  {PaperId:NumberInt(9002),PaperType:"Magzine", PaperQuality:NumberInt(1), PricePerUnit: 10.50,PaperQtyAvl:NumberInt(50)}
+)
+
+
+db.paper.insert( 
+  {PaperId:NumberInt(9003),PaperType:"Used Notebooks", PaperQuality:NumberInt(2), PricePerUnit: 5.75,PaperQtyAvl:NumberInt(85)}
+)
+
+db.paper.insert( 
+  {PaperId:NumberInt(9004),PaperType:"Cardboards", PaperQuality:NumberInt(2), PricePerUnit: 3.50,PaperQtyAvl:NumberInt(45)}
+)
+
+
+db.paper.insert( 
+  {PaperId:NumberInt(9005),PaperType:"Shredded paper", PaperQuality:NumberInt(3), PricePerUnit: 1.50,PaperQtyAvl:NumberInt(150)}
+)
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/*  Create table Sell */
+
+
+/* Insert data to Sell Table */
+
+
+db.Sell.insert( 
+  {TId:NumberInt(1111100001),CustId:NumberInt(1001), PaperId:NumberInt(9001), PaperUnitSold: NumberInt(10), RewardPointsGained:NumberInt(8)}
+)
+
+
+/* Create Index for  Sell Id */
+
+db.Sell.createIndex( {"TId" : 1}, { unique : true } )
+
+
+db.Sell.insert( 
+  {TId:NumberInt(1111100002),CustId:NumberInt(1002), PaperId:NumberInt(9001), PaperUnitSold: NumberInt(10), RewardPointsGained:NumberInt(8)}
+)
+
+
+
+db.Sell.insert( 
+  {TId:NumberInt(1111100003),CustId:NumberInt(1003), PaperId:NumberInt(9001), PaperUnitSold: NumberInt(10), RewardPointsGained:NumberInt(8)}
+)
+
+
+
+db.Sell.insert( 
+  {TId:NumberInt(1111100004),CustId:NumberInt(1004), PaperId:NumberInt(9001), PaperUnitSold: NumberInt(10), RewardPointsGained:NumberInt(8)}
+)
+
+
+
+db.Sell.insert( 
+  {TId:NumberInt(1111100005),CustId:NumberInt(1005), PaperId:NumberInt(9001), PaperUnitSold: NumberInt(10), RewardPointsGained:NumberInt(8)}
+)
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/*  Create table Buy */
+
+
+/* Insert data to Buy Table */
+
+
+db.Buy.insert( 
+  {TId:NumberInt(1000011111),ConsId:NumberInt(5001), PaperId:NumberInt(9001), PaperUnitPurchased: NumberInt(10)}
+)
+
+
+/* Create Index for  Buy Id */
+
+db.Buy.createIndex( {"TId" : 1}, { unique : true } )
+
+
+db.Buy.insert( 
+  {TId:NumberInt(1000011112),ConsId:NumberInt(5002), PaperId:NumberInt(9004), PaperUnitPurchased: NumberInt(50)}
+)
+
+
+
+db.Buy.insert( 
+  {TId:NumberInt(1000011113),ConsId:NumberInt(5003), PaperId:NumberInt(9002), PaperUnitPurchased: NumberInt(80)}
+)
+
+
+
+db.Buy.insert( 
+  {TId:NumberInt(1000011114),ConsId:NumberInt(5002), PaperId:NumberInt(9003), PaperUnitPurchased: NumberInt(100)}
+)
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
