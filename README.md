@@ -50,7 +50,7 @@ The recycling of paper is the process by which wastepaper is turned into a new p
 
 ## <a id = "the-architecture"> The architecture </a>
 
-![Video transcription/translation app](https://developer.ibm.com/developer/tutorials/cfc-starter-kit-speech-to-text-app-example/images/cfc-covid19-remote-education-diagram-2.png)
+![Video transcription/translation app](./Images/SATVA_Architecture.jpg)
 
 1. The customer/consumer logins to the portal via the web application deployed on IBM Cloud Kubernetes Cluster Service.
 2. The Web application uses Angular for frontend and Java Spring boot for the backend.
@@ -74,7 +74,7 @@ It's in a free tier IBM Cloud Kubernetes cluster. In the future we plan to run o
 
 See below for our proposed schedule on next steps after Call for Code 2021 submission.
 
-![Roadmap](./images/roadmap.jpg)
+![Roadmap](./Images/Solution_Roadmap_Satva.png)
 
 ## <a id="getting-started" > Getting started </a>
 
