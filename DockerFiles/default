@@ -1,9 +1,0 @@
-server {
-	listen 80 default_server;
-    root /var/www/html;
-
-    try_files $uri $uri/ index.html;
-
-    error_log /var/log/nginx/angular4_error.log;
-    access_log /var/log/nginx/angular4_access.log;
-}
