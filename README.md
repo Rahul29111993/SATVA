@@ -1,6 +1,6 @@
 # SATVA
 
-[![License](https://img.shields.io/badge/License-Apache2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) [![Community](https://img.shields.io/badge/Join-Community-blue)](http://169.57.112.133:30164/) [![Website](https://img.shields.io/badge/View-Website-blue)](http://169.57.112.133:30164/)
+[![License](https://img.shields.io/badge/License-Apache2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) [![Community](https://img.shields.io/badge/Join-Community-blue)](http://169.57.112.133:30164/) [![Website](https://img.shields.io/badge/View-Website-blue)](http://satvav1.ddns.net:30164/)
 
 ### “Don't throw your paper away, it can be effectively reused!”
 
