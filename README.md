@@ -20,11 +20,8 @@
   - [Getting started](#getting-started)
   - [Live demo](#live-demo)
   - [Built with](#built-with)
-  - [Contributing](#contributing)
-  - [Versioning](#versioning)
   - [Authors](#authors)
-  - [License](#license)
-  - [Acknowledgments](#acknowledgments)
+ 
 
 
 ## <a id = "short-description">Short description </a>
@@ -79,7 +76,7 @@ See below for our proposed schedule on next steps after Call for Code 2021 submi
 
 ### Prerequisites
 
-- Install and configure Softwares required to build JAR File.
+- Install and configure  [Java 8](https://www.java.com/en/download/help/windows_manual_download.html) and above, [Spring boot 5.x](https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started.html), [maven 4.x.](https://maven.apache.org/install.html).
 - Install and configure [nodejs](https://nodejs.org/en/download/).
 - Register for an [IBM Cloud](https://www.ibm.com/account/reg/us-en/signup?formid=urx-42793&eventid=cfc-2020?cm_mmc=OSocial_Blog-_-Audience+Developer_Developer+Conversation-_-WW_WW-_-cfc-2020-ghub-starterkit-cooperation_ov75914&cm_mmca1=000039JL&cm_mmca2=10008917) account.
 - Install and configure [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started#overview).
@@ -88,11 +85,84 @@ See below for our proposed schedule on next steps after Call for Code 2021 submi
 
 ### Steps
 
-1. [Build the Frontend code on local](#short-description)
+1. [Build the Frontend code on local](#1-frontend-build)
 2. [Build the Backend code on local](#2-backend-build).
-3. [Copy the built codes to Docker directory](#3-copy-code-to-docker-directory).
+3. [Build the Docker Image](#3-build-the-docker-image).
 4. [Deploy the Web App on IBM Cloud Kubernetes Cluster](#4-deploy-the-app).
+5. [Accessing the Deployed Web Application](#5-access-the-app)
 
 
+### <a id="1-frontend-build" > 1. Build the Frontend code on local </a>
+1. Go to the `Angular/satva/src/app` directory of the cloned repo.
+
+1. Edit the `store-ip.service.ts` file:
+    - Update the `IP` with the IP to the Sever IP where Spring services hosted.
+        > **Note**: If you are running the server locally and testing, set the `IP` as `localhost`. If you are deploying the application on IBM Cloud Kubernetes Service, get the Cluster Public IP and update it accordingly.
+
+    - Update the `PORT` with the appropriate port number being used for deploying the Java Spring Boot Services.
+        > **Note**: If you are running the server using the deployment file provided in repo without any changes, use port number 30163.
+1. From a terminal:
+    1. Go to the `Angular/satva` directory.
+    1. Install the dependencies: `npm install`.
+
+### <a id="2-backend-build" > 2. Build the Backend code on local </a>
+
+1. From a terminal:
+    1. Go to the `SpringBoot/demo` directory.
+    1. Install the dependencies: `mvn install`.
+
+
+### <a id="3-build-the-docker-image" > 3. Build the Docker Image </a>
+
+1. From a terminal:
+    1. Go to the `DockerFiles/data` directory.
+    1. Place the Angular build code in `DockerFiles/data/Angular/docs/` directory.
+    1. Place the JAR file built in `DockerFiles/data/SpringBoot/target/` directory.
+    1. Login to your IBM Cloud Account using command `ibmcloud login`.
+    1. Login to IBM Cloud Container Registry using command `ibmcloud cr login`.
+    1. Add namespace to your Container Registry using the following commands.
+      - `export ICR_NAMESPACE=<your_namespace>`
+      - `ibmcloud cr namespace-add $ICR_NAMESPACE`
+    7. Build Docker Image and push it to the Container Registry using the following commands.
+      - `export APP_IMAGENAME=us.icr.io/$ICR_NAMESPACE/discovery-demo-app:v8`
+      - `docker build -t $APP_IMAGENAME .`
+      - `docker push $APP_IMAGENAME`
+
+### <a id="5-access-the-app" > 4. Deploy the Web App on IBM Cloud Kubernetes Cluster </a>
+
+1. From a terminal:
+    1. Create a free 1 worker [IBM Kubernetes Service](https://cloud.ibm.com/kubernetes/catalog/create?cm_sp=ibmdev-_-developer-tutorials-_-cloudreg) cluster.
+    1. Connect to your IBM Kubernetes Service cluster using below command.
+      - `ibmcloud ks cluster config --cluster  <your_cluster_name>`
+    3. Go to the `KubernetesDeployment/` directory and edit `deployment.yaml` file and provide the appropriate name space and image name used.
+    4. Deploy the build using below commands.
+      - `kubectl apply -f deployment.yaml`
+      - `kubectl apply -f service.yaml`
+
+
+### <a id="4-deploy-the-app" > 5. Accessing the Deployed Web Application </a>
+1. From a browser, access the web application using the public IP of the kubernetes cluster and port 30164 as follows `http://<cluster-public-ip>:30164`
+
+
+## <a id="live-demo" >Live demo </a>
+
+You can find a running system to test at [satvav1.ddns.net:30164](http://satvav1.ddns.net:30164//).
+
+
+## <a id="built-with"> Built with </a>
+
+- [Angular](https://angular.io/) - The Frontend Framework Used
+- [Spring Boot](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/) - The Backend Framework Used
+- [Maven](https://maven.apache.org/) - Dependency management
+- [Mongo DB](https://www.mongodb.com/) - The No SQL Database Used
+- [IBM Cloud Kubernetes Cluser](https://www.ibm.com/in-en/cloud/kubernetes-service?p1=Search&p4=43700056949486558&p5=e&gclid=Cj0KCQjw6ZOIBhDdARIsAMf8YyEKkQWRKbgPfkPxNkpXP-i0TaJ7oy3gLYAR4W2-CjiGcGsg-dm4HEUaAq9wEALw_wcB&gclsrc=aw.ds) - Used for Deploying the Web Application
+
+
+## <a id="authors"> Authors </a>
+1. Malathi M (malathi_m@infosys.com)
+1. Maheshwary Swetha R C (Swetha_Maheshwary@infosys.com)
+1. Nandini Gowdru (Nandini_Gowdru@infosys.com)
+1. Rahul Singh Rajaput (rahul.rajaput@infosys.com)
+1. Apoorva Nag (apoorva.nag@infosys.com)
 
 
