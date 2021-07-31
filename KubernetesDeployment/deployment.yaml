@@ -18,7 +18,7 @@ spec:
         app: test-deployment
     spec:
       containers:
-      - image:  icr.io/satva_name_space/satva-demo-app:v8 
+      - image:  icr.io/<your_name_space>/<your_image_name>
         name: satva
         ports:
         - containerPort: 80
