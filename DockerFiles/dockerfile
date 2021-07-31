@@ -1,0 +1,117 @@
+# Download base image ubuntu 20.04
+FROM ubuntu:20.04
+
+# To run the keyserver command
+RUN apt-get update && apt-get install -y gnupg2
+
+RUN apt-get update && apt-get install -y sudo
+
+RUN apt-get update && apt-get install -y wget
+
+# Import the MongoDB public GPG key
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+
+# Create a list file for MongoDB
+RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+
+# Update the local package database
+RUN apt-get update
+
+# Install the latest stable version of MongoDB (note -y flag for non-interactive)
+RUN apt-get install -y mongodb-org
+
+# Create MongoDB's default data directory (-p creates parent directories - in this case, /data)
+RUN mkdir -p /data/db
+
+# Because this database will run in a Docker container, 
+# we must configure it to accept connctions from foreign hosts
+RUN echo "bind_ip = 0.0.0.0" >> /etc/mongodb.conf
+
+
+# Disable Prompt During Packages Installation
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Update Ubuntu Software repository
+RUN apt update
+
+RUN apt-get update && \
+apt-get install -y locales && \
+locale-gen en_GB.UTF-8
+
+# Install nginx, php-fpm and supervisord from ubuntu repository
+RUN apt install -y nginx supervisor && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt clean
+
+# For Nginx
+# Define the ENV variable 
+ENV nginx_vhost /etc/nginx/sites-available/default
+ENV nginx_conf /etc/nginx/nginx.conf
+ENV supervisor_conf /etc/supervisor/supervisord.conf
+
+# For Tomcat
+RUN apt-get update && \
+apt-get install -y locales && \
+locale-gen en_GB.UTF-8
+ENV TOMCAT_VERSION 8.5.50
+ENV LANG en_GB.UTF-8
+ENV LC_CTYPE en_GB.UTF-8
+
+# Fix sh
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+# Enable PHP-fpm on nginx virtualhost configuration
+COPY default ${nginx_vhost}
+
+    
+# Copy supervisor configuration
+COPY supervisord.conf ${supervisor_conf}
+
+RUN chown -R www-data:www-data /var/www/html
+    
+# Volume configuration
+VOLUME ["/etc/nginx/sites-enabled", "/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
+
+# Nginx Daemon Off to run it in foreground process
+CMD ["nginx", "-g", "daemon off;"]
+
+# Tomcat Environment Setup
+# Install dependencies
+RUN apt-get update && \
+apt-get install -y git build-essential curl wget software-properties-common
+
+# Install OpenJDK 12
+RUN \
+add-apt-repository -y ppa:openjdk-r/ppa && \
+apt-get update && \
+apt-get install -y openjdk-11-jdk wget unzip tar && \
+rm -rf /var/lib/apt/lists/*
+
+# Define commonly used JAVA_HOME variable
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64/
+
+# Get Tomcat
+RUN wget --quiet --no-cookies https://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/tomcat.tgz && \
+tar xzvf /tmp/tomcat.tgz -C /opt && \
+mv /opt/apache-tomcat-${TOMCAT_VERSION} /opt/tomcat && \
+rm /tmp/tomcat.tgz && \
+rm -rf /opt/tomcat/webapps/examples && \
+rm -rf /opt/tomcat/webapps/docs && \
+rm -rf /opt/tomcat/webapps/ROOT
+
+# Add admin/admin user
+ADD tomcat-users.xml /opt/tomcat/conf/
+
+ENV CATALINA_HOME /opt/tomcat
+ENV PATH $PATH:$CATALINA_HOME/bin
+VOLUME "/opt/tomcat/webapps"
+
+# Copy start.sh script and define default command for the container
+COPY data/Angular/docs/ /var/www/html
+COPY data/SpringBoot/target/ /opt/tomcat/webapps
+COPY data/DB_Data/insert_data.js /insert_data.js
+COPY start.sh /start.sh
+CMD ["./start.sh"]
+
+# Expose Port for the Application 
+EXPOSE 80 443 8080 8009 27017
