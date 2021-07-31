@@ -1,0 +1,96 @@
+<div *ngIf="userType=='customer'">
+<div class="row" style="margin:15px;">
+  <h2>Paper recycling report</h2>
+<div style="display: block;background-color: rgb(242, 242, 242);border:0.5px,rgb(242,242,242),transparent;border-radius: 5px;" class="col-8">
+  <canvas style="height: 250px;padding:2px" baseChart 
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType">
+    
+  </canvas>
+</div>
+
+<div class="col-3" style="margin-left:20px;padding:25px;background-color: rgb(242, 242, 242);">
+  <h2 class="text-center">My Reward Points</h2>
+  <h3 class="text-center">Current Points</h3>
+  <p class="text-center" style="color:rgb(69, 153, 35);font-size: 40px;margin-top: 35px;"><strong> {{totalReward}}</strong></p>
+  <p class="text-center" style="background-color: rgb(220,236,208);border:1px transparent rgb(113,173,71);border-radius: 2px;width: fit-content;margin-left: 25px;margin-top: 50px; "> <b> Redeemed Points:200pts</b></p>
+  <div>
+
+  </div>
+
+</div>
+</div>
+
+<div class="row" style="margin:10px">
+  <h2>My Transactions</h2>
+  <table class="table table-bordered">
+    <thead style="background-color: rgb(91 155 213);">
+      <tr>
+        <th scope="col">Transaction Id</th>
+        <th scope="col">Type of Paper</th>
+        <th scope="col">Weight</th>
+        <th scope="col">Date of Transaction</th>
+        <th scope="col">Reward Points Gained</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transact of  sellTransactionData;index as i">
+        <td>{{transact.transactionid}}</td>
+        <td>{{paperTypes[i]}}</td>
+        <td>{{weight[i]}}</td>
+        <td>{{transact.dateofTransaction|date}}</td>
+        <td>{{transact.rewardpoints}}</td>
+      </tr>     
+    </tbody>
+  </table>
+  
+</div>
+</div>
+
+<div *ngIf="userType=='consumer'">
+  <div class="row" style="margin:15px;">
+    <h2>Paper recycling report</h2>
+  <div style="display: block;background-color: rgb(242, 242, 242);border:0.5px,rgb(242,242,242),transparent;border-radius: 5px;" class="col-8">
+    <canvas style="height: 250px;" baseChart 
+      [datasets]="barChartData1"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [legend]="barChartLegend"
+      [chartType]="barChartType">      
+    </canvas>
+  </div>
+  
+  
+  
+  <div class="row" style="margin:10px">
+    <h2>My Transactions</h2>
+    <table class="table table-bordered">
+      <thead style="background-color: rgb(91 155 213);">
+        <tr>
+          <th scope="col">Transaction Id</th>
+          <th scope="col">Paper Quantity ordered</th>
+          <th scope="col">Amount Paid</th>
+          <th scope="col">Date of Transaction</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transact of  buyTransactionData;index as i">
+          <td>{{transact.transactionid}}</td>
+         
+          <td>{{buyWeight[i]}}</td>
+          <td>{{totalAmount[i]}}</td>
+          <td>{{transact.dateofTransaction|date}}</td>
+        
+        </tr>     
+      </tbody>
+    </table>
+    
+  </div>
+  </div>
+  </div>

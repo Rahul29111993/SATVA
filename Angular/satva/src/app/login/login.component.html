@@ -1,0 +1,132 @@
+<div *ngIf="userType==='customer'" class="flex-container" style="background-color:rgb(69, 153, 35);height:80px;">
+    
+  <img class="sbimage" src="../../assets/sell_paper_login.png"  alt="sell">
+
+
+<h1 class="display-1 loginheading"> <strong> Recycle </strong> paper for <strong> credits </strong> </h1>
+
+</div>
+
+<div class="row" *ngIf="userType==='customer'">    
+    <div class="col-sm-4 col-md-4 offset-md-4">
+      <h2 class="text-center"  style="margin-top:70px;color: rgb(69, 153, 35);"><strong>Customer Login</strong></h2>
+                  
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <div class="row mb-3">
+              <label for="custid" class="col-sm-3 col-form-label">CustomerID<span class="mandate">*</span>:</label>
+              <div class="col-sm-9">
+                <input type="number" #custId="ngModel" name="customerid" class="form-control" id="custid" placeholder="Enter your customer id" ngModel required>
+              </div>
+              <span *ngIf ="custId.touched&&custId.invalid" style="margin-top: 2px;" class="text-center text-danger">Customer id is mandatory</span>
+            </div>
+            <div class="row mb-3">
+              <label for="inputPassword" class="col-sm-3 col-form-label">Password<span class="mandate">*</span> :</label>
+              <div class="col-sm-9">
+                <input type="password" #custpassword="ngModel" class="form-control" placeholder="Enter your password" id="inputPassword" required name="customerpassword" ngModel>
+              </div>
+              <span *ngIf ="custpassword.touched && custpassword.invalid" class="text-center text-danger errorspan">Customer password is mandatory</span>
+            </div>    
+            
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-success" type="submit" [disabled]="!loginForm.valid" style="background-color:rgb(69, 153, 35)">Login</button>
+                <div id="passwordHelpBlock" class="form-text">
+                    New user? <a [routerLink]="['/register','customer']">Register now</a> 
+                  </div>
+              </div>
+
+              <div *ngIf="loginError!=null">
+                <span class="text-danger" style="margin-left: 100px;">{{loginError}}</span>
+              </div>
+            
+          </form>
+    </div>
+</div>
+
+<!-- _____________________dropbox login___________________________________________ -->
+  <div *ngIf="userType==='dropbox'" class="flex-container" style="background-color:rgb(69, 153, 35);height:80px;">
+    
+    <img class="sbimage" src="../../assets/sell_paper_login.png"  alt="sell">
+  
+  
+  <h1 class="display-1 loginheading"> <strong> Recycle </strong> paper for <strong> credits </strong> </h1>
+  
+  </div>
+  <div class="row" *ngIf="userType==='dropbox'" style="background-color: rgb(220, 245, 184);min-height:80vh;" >    
+    <div class="col-sm-4 col-md-4 offset-md-4">
+      <h2 class="text-center"  style="margin-top:70px;color: rgb(69, 153, 35);"><strong>Dropbox Customer Login</strong></h2>           
+              <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="loginform">
+                <div class="row mb-3">
+                  <label for="custid" class="col-sm-3 col-form-label">CustomerID<span class="mandate">*</span>:</label>
+                  <div class="col-sm-9">
+                    <input type="number" #custId="ngModel" name="customerid" class="form-control" id="custid" placeholder="Enter your customer id" ngModel required>
+                  </div>
+                  <span *ngIf ="custId.touched&&custId.invalid" style="margin-top: 2px;" class="text-center text-danger">Customer id is mandatory</span>
+                </div>
+                <div class="row mb-3">
+                  <label for="inputPassword" class="col-sm-3 col-form-label">Password<span class="mandate">*</span> :</label>
+                  <div class="col-sm-9">
+                    <input type="password" #custpassword="ngModel" class="form-control" placeholder="Enter your password" id="inputPassword" required name="customerpassword" ngModel>
+                  </div>
+                  <span *ngIf ="custpassword.touched && custpassword.invalid" class="text-center text-danger errorspan">Customer password is mandatory</span>
+                </div>    
+                
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-success" type="submit" [disabled]="!loginForm.valid" style="background-color:rgb(69, 153, 35)">Login</button>
+                    
+                    <div class="form-text">
+                        New user? <a [routerLink]="['/register','customer']">Register now</a> 
+                      </div>
+                  </div>              
+              </form>
+              <div *ngIf="loginError!=null">
+                <span class="text-danger">{{loginError}}</span>
+              </div>
+        </div>
+       
+    </div>
+
+    <!-- __________________________________consumer login______________________________ -->
+    <div *ngIf="userType==='consumer'" class="flex-container" style="background-color:rgb(34, 86, 180);height:80px;">
+    
+      <img class="sbimage1" src="../../assets/Buy_Paper_image.png"  alt="sell">
+    
+    
+    <h1 class="display-1 loginheading" style="margin-left: 20px;"> <strong> Buy and Recycle Paper
+    </strong> </h1>
+    
+    </div>
+
+    <div class="row" *ngIf="userType==='consumer'">    
+      <div class="col-sm-4 col-md-4 offset-md-4">
+        <h2 class="text-center"  style="margin-top:70px;color: rgb(34, 86, 180);"><strong>Consumer Login</strong></h2>
+                    
+            <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+              <div class="row mb-3">
+                <label for="custid" class="col-sm-3 col-form-label">ConsumerID<span class="mandate">*</span>:</label>
+                <div class="col-sm-9">
+                  <input type="number" #custId="ngModel" name="customerid" class="form-control" id="custid" placeholder="Enter your consumer id" ngModel required>
+                </div>
+                <span *ngIf ="custId.touched&&custId.invalid" style="margin-top: 2px;" class="text-center text-danger">Consumer id is mandatory</span>
+              </div>
+              <div class="row mb-3">
+                <label for="inputPassword" class="col-sm-3 col-form-label">Password<span class="mandate">*</span> :</label>
+                <div class="col-sm-9">
+                  <input type="password" #custpassword="ngModel" class="form-control" placeholder="Enter your password" id="inputPassword" required name="customerpassword" ngModel>
+                </div>
+                <span *ngIf ="custpassword.touched && custpassword.invalid" class="text-center text-danger errorspan">Consumer password is mandatory</span>
+              </div>    
+              
+              <div class="d-grid gap-2 col-6 mx-auto">
+                  <button class="btn btn-success" type="submit" [disabled]="!loginForm.valid" style="background-color:rgb(34, 86, 180)">Login</button>
+                  <div id="passwordHelpBlock" class="form-text">
+                      New user? <a [routerLink]="['/register','consumer']">Register now</a> 
+                    </div>
+                </div>
+  
+                <div *ngIf="loginError!=null">
+                  <span class="text-danger" style="margin-left: 100px;">{{loginError}}</span>
+                </div>
+              
+            </form>
+      </div>
+  </div>

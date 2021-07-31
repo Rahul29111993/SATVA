@@ -1,0 +1,29 @@
+<div class='row' style="background-color:rgb(69, 153, 35)">
+    <div class='col-sm-4 col-md-3 offset-md-1 profile'>
+        <h1 class="text-center"><i class="bi bi-person-circle" style="font-size:60px;"></i></h1>
+    </div>
+    <div class='col-sm-4 col-md-6 offset-md-1'>
+        <h1 class="customerheading">Welcome <strong> {{user | titlecase}}, </strong> hope you are doing good !!!</h1>
+    </div>
+    
+</div>
+
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened="true">
+        <mat-nav-list style="margin-top:50px;">
+            <a mat-list-item  routerLinkActive="active-list-item" [routerLink]="['/customer', {outlets: {'sidenavcontent': ['sell']}}]"> Sell Paper</a>
+            <a mat-list-item routerLinkActive="active-list-item" [routerLink]="['/customer',{outlets: {'sidenavcontent': ['rewards']}}]"> Rewards</a>
+            <a mat-list-item routerLinkActive="active-list-item" [routerLink]="['/customer', {outlets: {'sidenavcontent': ['dashboard','customer']}}]">Dashboard</a>
+            <a mat-list-item routerLinkActive="active-list-item" [routerLink]="['/customer', {outlets: {'sidenavcontent': ['feedback','customer']}}]"> Feedback</a>
+            <a mat-list-item routerLinkActive="active-list-item" [routerLink]="['/customer',{outlets: {'sidenavcontent': ['referral','customer']}}]"> Referrals</a>
+         </mat-nav-list>
+        
+    </mat-sidenav>
+    <mat-sidenav-content>        
+        <div class='row'>
+            <div class='col'>
+            <router-outlet name="sidenavcontent"></router-outlet>
+            </div>
+        </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

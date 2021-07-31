@@ -1,0 +1,36 @@
+
+<div class="row">
+    <h2>Order summary details:</h2>
+  </div>
+  <div *ngIf="orderedPapers.length>0">
+  <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Sl No.</th>
+          <th scope="col">Quality</th>
+          <th scope="col">Required Quantity in kgs</th>
+          <th scope="col">Type</th>
+          <th scope="col">Price per kg</th>
+          <th scope="col">Total price</th>
+         
+        </tr>
+      </thead>
+      <tbody >
+        <tr *ngFor="let paperdetail of orderedPapers;index as i">
+            <td>{{i+1}}</td>
+            <td  *ngFor="let detail of paperdetail| keyvalue;">{{detail.value}}</td>
+            <td>{{ priceValue[i]}}</td>
+            <td>{{totalPrice[i]}}</td>
+            <!-- <td><input type="checkbox" #buyCheckbox [disabled]="papers[i].paperQuantity>availabilityDetails[i]" [value]="i" ngModel (ngModelChange)="onNgModelChange($event,buyCheckbox.value)"></td> -->
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+        <h2>Total amount to be Paid: Rs  {{toalCartValue}}</h2>
+    </div>
+    <div class="row">
+      <div class="col-3"><a [routerLink]="['/consumer', {outlets: {'sidenavcontent': ['checkavailability']}}]" class="btn" style="background-color: rgb(127, 127, 127);margin-left: 20px;color:white">Back</a></div>
+      <div class="col-4 offset-5"><a (click)="updateTotalAmount()" class="btn" style="background-color: rgb(29,73,153);margin-left: 100px;color:white">Pay Now and Order</a></div>
+    
+  </div>
+  </div>

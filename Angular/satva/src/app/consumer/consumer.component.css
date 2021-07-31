@@ -1,0 +1,49 @@
+mat-sidenav-container{
+    height:100%;
+    min-height: 70vh;
+}
+
+mat-sidenav,mat-sidenav-content{
+    padding: 15px;;
+}
+.customerheading{
+    margin-top: 22px;
+    color:white;
+    /* background:whitesmoke; */
+    /* margin-left: 90px; */
+}
+mat-sidenav{
+    background:whitesmoke;
+    width:225px;
+}
+mat-sidenav mat-nav-list a{
+    border-bottom: 2px solid rgb(233, 231, 231);
+    border-width: 100%;
+}
+.profile{
+    border:2px solid black;
+    /* background:whitesmoke; */
+    /* background:rgb(69, 153, 35); */
+    border:transparent;
+    /* border-radius: 50%; */
+    margin-left: -70px;
+    margin-top:-5px;
+    /* width:80px;
+    height:80px; */
+    padding-top: 15px;
+}
+/* a{border:1px solid grey;} */
+
+/* a[mat-list-item]:focus{
+background: rgb(34, 86, 180);
+z-index: 10;
+overflow: visible;
+clip-path: polygon(0% 0%, 80% 0%, 100% 50%, 80% 100%, 0% 100%);
+} */
+
+.active-list-item {
+    background: rgb(34, 86, 180) !important;
+   z-index: 10;
+overflow: visible;
+clip-path: polygon(0% 0%, 80% 0%, 100% 50%, 80% 100%, 0% 100%);
+  }

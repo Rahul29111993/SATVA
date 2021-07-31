@@ -1,0 +1,98 @@
+<div class="flex-container" style="background-color:rgb(69, 153, 35);height:80px;">
+    
+    <img class="sbimage" src="../../assets/sell_paper_login.png"  alt="sell">
+
+
+  <h1 class="display-1 loginheading"> <strong> Recycle </strong> paper for <strong> credits </strong> </h1>
+
+</div>
+<div class="row" style="background-color: rgb(220, 245, 184);min-height:80vh;">    
+    <div class="col-sm-4 col-md-6 offset-md-4">        
+        <h1  style="margin-top: 35px;margin-left:110px;">Welcome <strong>{{userName|titlecase}}!</strong></h1>
+        <h2>Enter paper details:</h2>
+        <form #dropboxform="ngForm" (ngSubmit)="onSubmit(dropboxform)">
+            <div class="row mb-3 form-group">
+                <label for="papercategory" class="col-sm-4 col-form-label">Choose the paper type:</label>
+                <div class="col-sm-4">
+                    <select class="form-select" id="papercategory" name="papertype" ngModel required>
+                        <option class="options" value="Newspaper">Newspaper</option>
+                        <option class="options" value="Notebooks">Notebooks</option>
+                        <option class="options" value="Cardboard">Cardboard</option>
+                        <option class="options" value="Magazines">Magazines</option>
+                        <option class="options" value="Shredded">Shredded</option>
+                        <option class="options" value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3 form-group">
+                <label for="paperquality" class="col-sm-4 col-form-label">Paper quality:</label>
+                <div class="col-sm-4 col-md-5">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="paperquality" id="lowquality"
+                            value="Low" ngModel required>
+                        <label class="form-check-label" for="lowquality">Low</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="paperquality" id="mediumquality"
+                            value="Medium" ngModel required>
+                        <label class="form-check-label" for="highquality">Medium</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="paperquality" id="highquality"
+                            value="High" ngModel required>
+                        <label class="form-check-label" for="highquality">High</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3 form-group">
+                <label for="paperquantity" class="col-sm-4 col-form-label">Paper Quantity in Kgs:
+
+                </label>
+                <div class="col-sm-4 col-md-5">
+                    <input type="number" id="paperquantity" class="form-control" [min]="5"
+                        aria-describedby="passwordHelpBlock" name="paperquantity" ngModel required>
+                    <div id="passwordHelpBlock" class="form-text">
+                        minimum paper quantity should be 5kgs.
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3 form-group">
+                <div class="col-sm-6 offset-sm-4">
+                    <button type="submit" class="btn btn-primary" [disabled]="!dropboxform.valid" style="background-color:rgb(69, 153, 35)">Add To
+                        List</button>
+                </div>
+            </div>
+        </form>
+        <div *ngIf="showtable">
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Sl No.</th>
+                <th scope="col">Quality</th>
+                <th scope="col">Quantity in kgs</th>
+                <th scope="col">Type</th>
+                <th scope="col">Edit</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr *ngFor="let paperdetail of papers;index as i">
+                  <td>{{i+1}}</td>
+                  <td  *ngFor="let detail of paperdetail| keyvalue;">{{detail.value}}</td>
+                  <td><i class="bi bi-pencil"></i>&nbsp;&nbsp;<i class="bi bi-trash"></i></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row">
+              <!-- <div class="col-md-6"><a  class="btn btn-primary" style="background-color: #C43F3E;margin-left: 80px;padding: 2px;">Drop Paper and Calculate
+            </a></div>   -->
+          
+            <div class="col-md-4 offset-md-8"><a  (click)="singleClick()" (dblclick)="doubleClick()" class="btn btn-primary" style="background-color: #C43F3E;margin-left:100px;padding:2px">Drop Paper
+          </a></div>
+        </div>
+          </div>
+    </div>
+</div>
+
+<!-- [routerLink]="['/dropbin','false',paperDetails]" -->
+<!-- [routerLink]="['/dropbin','true']" -->
+<!-- -->

@@ -1,0 +1,58 @@
+<div *ngIf="userType=='customer'">
+<div class="row" style="background-color: rgb(255,230,153);margin-top:-14px">
+  <h2 class="display-1" style="color: rgb(69, 153, 35);margin-top: 10px;"> <strong> Send us your feedback!</strong></h2>
+  <h3 class="display-2" style="color: rgb(69, 153, 35);"> <strong> Your opinion is important to us, so that we can improve our service!</strong> </h3> 
+  <!-- <angular-emojis [name]="'smiley'" size="60"> </angular-emojis> -->
+  </div>
+  <div class="row">
+  <p style="font-size: 20px;margin-top: 15px;font-weight: bold;">How was your experience?<p>
+  <p class="emoji"><i class="bi bi-emoji-frown" [style.color]="color1" (click)="(color1=='rgb(217,217,217)')?color1='rgb(69, 153, 35)':color1='rgb(217,217,217)';color2='rgb(217,217,217)';color3='rgb(217,217,217)';color4='rgb(217,217,217)'"></i>
+    <i class="bi bi-emoji-neutral" [style.color]="color2"   (click)="(color2=='rgb(69, 153, 35)')?color2='rgb(217,217,217)':color2='rgb(69, 153, 35)';color1='rgb(217,217,217)';color3='rgb(217,217,217)';color4='rgb(217,217,217)'"></i>
+    <i class="bi bi-emoji-smile" [style.color]="color3"   (click)="(color3=='rgb(69, 153, 35)')?color3='rgb(217,217,217)':color3='rgb(69, 153, 35)';color1='rgb(217,217,217)';color2='rgb(217,217,217)';color4='rgb(217,217,217)'"></i>
+    <i class="bi bi-emoji-laughing" [style.color]="color4"  (click)="(color4=='rgb(69, 153, 35)')?color4='rgb(217,217,217)':color4='rgb(69, 153, 35)';color1='rgb(217,217,217)';color3='rgb(217,217,217)';color2='rgb(217,217,217)'"></i></p>
+</div>
+  
+  <form style="margin-top: 20px;">
+      <div class="row ">        
+        <div>
+          <textarea rows="7" cols="140" placeholder="Describe your experience here..." style="margin-left: 20px;"></textarea>
+          </div>
+      </div>    
+      <div class="row">
+          <div class="col-md-2 offset-md-4">
+      <button type="submit" class="btn btn-primary " style="background-color: rgb(69, 153, 35); float: right;" [routerLink]='["/"]'>Send Feedback
+      </button></div>
+      </div>
+    </form>
+  </div> 
+    
+  <div *ngIf="userType=='consumer'">
+    <div class="row" style="background-color: rgb(217,217,217);margin-top:-14px">
+      <h2 class="display-1" style="color: rgb(34,86,180);margin-top: 10px;"> <strong> Send us your feedback!</strong></h2>
+      <h3 class="display-2" style="color: rgb(34,86,180);"> <strong> Your opinion is important to us, so that we can improve our service!</strong> </h3> 
+      <!-- <angular-emojis [name]="'smiley'" size="60"> </angular-emojis> -->
+      </div>
+      <div class="row">
+      <p style="font-size: 20px;margin-top: 15px;font-weight: bold;">How was your experience?<p>
+      <p class="emoji"><i #value1 class="bi bi-emoji-frown" [style.color]="color1" (click)="(color1=='rgb(217,217,217)')?color1='rgb(34,86,180)':color1='rgb(217,217,217)';color2='rgb(217,217,217)';color3='rgb(217,217,217)';color4='rgb(217,217,217)'"></i>
+        <i class="bi bi-emoji-neutral" #value2 [style.color]="color2"   (click)="(color2=='rgb(34,86,180)')?color2='rgb(217,217,217)':color2='rgb(34,86,180)';color1='rgb(217,217,217)';color3='rgb(217,217,217)';color4='rgb(217,217,217)'"></i>
+        <i class="bi bi-emoji-smile" #value3 [style.color]="color3"   (click)="(color3=='rgb(34,86,180)')?color3='rgb(217,217,217)':color3='rgb(34,86,180)';color1='rgb(217,217,217)';color2='rgb(217,217,217)';color4='rgb(217,217,217)'"></i>
+        <i class="bi bi-emoji-laughing" #value4 [style.color]="color4"  (click)="(color4=='rgb(34,86,180)')?color4='rgb(217,217,217)':color4='rgb(34,86,180)';color1='rgb(217,217,217)';color3='rgb(217,217,217)';color2='rgb(217,217,217)'"></i>
+      </p>
+    </div>
+      
+      <form style="margin-top: 20px;">
+          <div class="row ">        
+            <div>
+              <textarea #description rows="7" cols="140" placeholder="Describe your experience here..." style="margin-left: 20px;"></textarea>
+              </div>
+          </div>    
+          <div class="row">
+              <div class="col-md-2 offset-md-4">
+          <button type="submit" class="btn btn-primary" (click)="updateFeedbackValue(value1,value2,value3,value4,description)" style="background-color: rgb(69, 153, 35); float: right;">Send Feedback
+          </button></div>
+          <span class="text-success" style="margin-top: 10px;margin-left: 350px;" *ngIf="successMsg!=''"><strong>{{successMsg}} </strong> </span>
+          <span class="text-danger text-center"  style="margin-top: 10px;margin-left: 350px;" *ngIf="errorMsg!=''"><strong> {{errorMsg}}</strong> </span>
+          </div>
+        </form>
+ </div>   
