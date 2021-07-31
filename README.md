@@ -45,7 +45,7 @@ The recycling of paper is the process by which wastepaper is turned into a new p
 
 ## <a id = "demo-video"> Demo video  </a>
 
-[![Watch the video](./images/SATVA_Vimeo_Image.png)](https://vimeo.com/581537692)
+[![Watch the video](https://github.com/Rahul29111993/SATVA/blob/main/Images/SATVA_Vimeo_Image.png)](https://vimeo.com/581537692)
 
 ## <a id = "the-architecture"> The architecture </a>
 
