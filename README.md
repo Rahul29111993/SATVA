@@ -59,7 +59,7 @@ The recycling of paper is the process by which wastepaper is turned into a new p
 
 ## <a id = "long-description"> Long description </a>
 
-[More detail is available here](./docs/DESCRIPTION.md)
+[More detail is available here](./Docs/SATVA_Long_Description.docx)
 
 ## <a id = "project-roadmap"> Project roadmap </a>
 
