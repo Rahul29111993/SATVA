@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: test-deployment
+  name: test-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-deployment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: test-deployment
+    spec:
+      containers:
+      - image:  icr.io/satva_name_space/satva-demo-app:v8 
+        name: satva
+        ports:
+        - containerPort: 80
+        - containerPort: 8080
+        - containerPort: 27017
+        resources: {}
+status: {}
+
